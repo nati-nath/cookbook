@@ -25,11 +25,11 @@ optional `group` (sub-heading), `note`, `pantry` (goes under "Check you have"), 
 
 ## Recipe requests
 
-The Request tab is a form that opens the repo's GitHub issue form (`.github/ISSUE_TEMPLATE/recipe-request.yml`)
-with the answers filled in. The sender adds a picture there and presses Submit. Requests arrive as GitHub issues
-labelled `recipe request`, are public, and need a GitHub account. The form fields match the recipe fields above,
-so a request can be turned into a JSON entry directly. If you change a field in the template, change its `id`
-in the form code (`index.html`, "recipe request") too.
+The Request tab is a form with the same fields as a recipe. Sending opens the sender's email app with a
+ready-written message to the address set in `REQUEST_EMAIL` (`index.html`, "recipe request"). They attach a
+picture in the email. If they have no email app, "Copy the request" puts the same text on the clipboard.
+No account is needed. The address is visible on the public page, so expect some spam.
+To turn a request into a recipe, paste the email to Claude and ask for it to be added.
 
 ## Photos
 
