@@ -66,23 +66,19 @@
   #tag-chips { margin-left: var(--md); }
   #tag-chips button.on { background: var(--accent); color: #fff; }
 
-  /* Cards stagger left and right; the time tag overlaps the top edge */
+  /* Recipe grid: square photo with the title underneath, two across */
+  #cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--lg) var(--md); margin-bottom: var(--lg); }
   .card {
-    position: relative; display: block; width: calc(100% - var(--md)); text-align: left;
+    position: relative; display: block; width: 100%; text-align: left;
     text-transform: none; letter-spacing: 0; font-size: 1rem; font-weight: 400;
-    padding: 24px var(--md) var(--md); margin: 0 0 var(--lg);
+    padding: 0; border: none; box-shadow: none; background: none;
   }
-  .card:nth-child(even) { margin-left: var(--md); box-shadow: 4px 4px 0 var(--accent); }
-  .card .t { font-size: 1.5rem; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
-  .card .m { color: var(--muted); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-top: var(--sm); }
-  .card .tag {
-    position: absolute; top: -14px; right: var(--md); transform: rotate(-3deg);
-    background: var(--primary); color: #000; border: 2px solid var(--ink);
-    padding: 2px 10px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-  }
+  .card .ph { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+  .card .t { font-size: 1.05rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; margin-top: var(--sm); }
+  .card .m { color: var(--muted); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px; }
+  .card .nophoto { aspect-ratio: 1 / 1; background: var(--surface); border: 2px solid var(--ink); }
 
-  /* Photos: cards carry a cropped photo; the recipe page offsets it against a blue block */
-  .card .ph { display: block; width: calc(100% + 2 * var(--md)); margin: -24px calc(-1 * var(--md)) var(--md); height: 11rem; object-fit: cover; border-bottom: 2px solid var(--ink); }
+  /* Photos: the recipe page offsets the photo against a blue block */
   .hero { position: relative; margin: var(--md) 0 var(--lg) 0; }
   .hero::before { content: ""; position: absolute; z-index: -1; inset: 12px -4px -12px 10px; background: var(--accent); }
   .hero img { display: block; width: 100%; max-height: 24rem; object-fit: cover; border: 2px solid var(--ink); background: var(--surface); }
@@ -169,7 +165,7 @@
   <section id="tab-grocery" class="panel"></section>
   <section id="tab-request" class="panel">
     <p>Know a recipe that belongs here? Fill in what you can. Only the dish name is needed.</p>
-    <p class="sub">Sending opens your email app with the request written for you. Attach a picture there if you have one, then press Send. Requests go to <a id="mail-addr" href="#"></a>.</p>
+    <p class="sub">Sending opens your email app with the request written for you. Attach a picture there if you have one, then press Send.</p>
     <form class="form" id="req" novalidate>
       <label for="f-name">Dish name *</label>
       <input id="f-name" name="name" autocomplete="off" aria-describedby="f-name-err">
@@ -268,8 +264,8 @@ function renderList() {
     .filter((r) => !q || [r.name, r.subtitle || "", ...r.tags, ...r.ingredients.map((i) => i.name)].join(" ").toLowerCase().includes(q))
     .sort((a, b) => total(a) - total(b));
   $("#cards").innerHTML = hits.length
-    ? hits.map((r) => `<button class="card" data-id="${r.id}">${r.image ? `<img class="ph" src="${esc(r.image)}" alt="${esc(r.image_alt || r.name)}" loading="lazy">` : ""}<span class="tag">${tilde(r)}${total(r)} min</span><div class="t">${esc(r.name)}</div>
-        <div class="m">${r.ingredients.length} ingredients${state.plan[r.id] ? " · on list" : ""}</div></button>`).join("")
+    ? hits.map((r) => `<button class="card" data-id="${r.id}">${r.image ? `<img class="ph" src="${esc(r.image)}" alt="${esc(r.image_alt || r.name)}" loading="lazy">` : `<div class="nophoto"></div>`}<div class="t">${esc(r.name)}</div>
+        <div class="m">${tilde(r)}${total(r)} min${state.plan[r.id] ? " · on list" : ""}</div></button>`).join("")
     : `<div class="empty">No recipe matches.</div>`;
   $("#cards").querySelectorAll(".card").forEach((c) => (c.onclick = () => openDetail(c.dataset.id)));
 }
@@ -386,8 +382,6 @@ function renderGrocery() {
 const REQUEST_EMAIL = "poses_salami.3v@icloud.com";
 const REQUEST_FIELDS = [["photo", "Picture"], ["prep", "Prep time (minutes)"], ["cook", "Cook time (minutes)"], ["tags", "Tags"],
   ["ingredients", "Ingredients"], ["method", "Method"], ["notes", "Variations and notes"], ["source", "Where is it from?"]];
-$("#mail-addr").textContent = REQUEST_EMAIL;
-$("#mail-addr").href = "mailto:" + REQUEST_EMAIL;
 
 function requestText() {
   const f = new FormData($("#req"));
