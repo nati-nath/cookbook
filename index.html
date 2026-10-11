@@ -66,16 +66,16 @@
   #tag-chips { margin-left: var(--md); }
   #tag-chips button.on { background: var(--accent); color: #fff; }
 
-  /* Recipe grid: square photo with the title underneath, two across */
-  #cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--lg) var(--md); margin-bottom: var(--lg); }
+  /* Recipe grid: square photo with the title underneath, four across */
+  #cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--md) var(--sm); margin-bottom: var(--lg); }
   .card {
     position: relative; display: block; width: 100%; text-align: left;
     text-transform: none; letter-spacing: 0; font-size: 1rem; font-weight: 400;
     padding: 0; border: none; box-shadow: none; background: none;
   }
   .card .ph { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
-  .card .t { font-size: 1.05rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; margin-top: var(--sm); }
-  .card .m { color: var(--muted); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px; }
+  .card .t { overflow-wrap: anywhere; font-size: 0.8rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; margin-top: var(--sm); }
+  .card .m { color: var(--muted); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; margin-top: 4px; }
   .card .nophoto { aspect-ratio: 1 / 1; background: var(--surface); border: 2px solid var(--ink); }
 
   /* Photos: the recipe page offsets the photo against a blue block */
