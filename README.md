@@ -13,7 +13,7 @@ python3 -m json.tool recipes/recipes.json > /dev/null && echo valid
 ```
 
 Fields: `id` (permanent, the grocery list on the phone refers to it), `name`, `subtitle`, `tags`,
-`prep_minutes`, `cook_minutes`, `time_is_estimate`, `source`, `ingredients`, `steps`, `variations`, `note`.
+`image`, `image_alt`, `image_credit` (`text` and `url`), `prep_minutes`, `cook_minutes`, `time_is_estimate`, `source`, `ingredients`, `steps`, `variations`, `note`.
 
 Each ingredient: `name`, `qty` (number or `null`), optional `qty_max` for a range, `unit`, `aisle`,
 optional `group` (sub-heading), `note`, `pantry` (goes under "Check you have"), `no_grocery` (never listed, e.g. water).
@@ -22,6 +22,13 @@ optional `group` (sub-heading), `note`, `pantry` (goes under "Check you have"), 
 - Teaspoons and tablespoons are added together (3 tsp = 1 tbsp).
 - Set `time_is_estimate` to `false` once you have cooked it and timed it; the `~` in the app disappears.
 - Set `method_inferred` to `true` if the steps are not from the source; the app flags it.
+
+## Photos
+
+Photos live in `images/`, about 900px on the long side, saved as JPEG so a recipe page loads fast on a phone.
+Use your own photo, or one with an open licence (Wikimedia Commons). A CC BY or CC BY-SA photo needs
+the `image_credit` line, which the app shows under the picture. Do not add a photo you have no right to publish:
+this repo is public.
 
 ## Running it locally
 

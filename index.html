@@ -80,6 +80,14 @@
     background: var(--primary); color: #000; border: 2px solid var(--ink);
     padding: 2px 10px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
   }
+
+  /* Photos: cards carry a cropped photo; the recipe page offsets it against a blue block */
+  .card .ph { display: block; width: calc(100% + 2 * var(--md)); margin: -24px calc(-1 * var(--md)) var(--md); height: 11rem; object-fit: cover; border-bottom: 2px solid var(--ink); }
+  .hero { position: relative; margin: var(--md) 0 var(--lg) 0; }
+  .hero::before { content: ""; position: absolute; z-index: -1; inset: 12px -4px -12px 10px; background: var(--accent); }
+  .hero img { display: block; width: 100%; max-height: 24rem; object-fit: cover; border: 2px solid var(--ink); background: var(--surface); }
+  .credit { font-size: 0.75rem; color: var(--muted); margin: var(--md) 0 0; }
+  .credit a { color: var(--muted); }
   .empty { color: var(--muted); margin-top: var(--lg); line-height: 1.6; }
 
   h1 { font-size: clamp(2.1rem, 10vw, 3.4rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; margin: var(--md) 0 var(--sm); overflow-wrap: anywhere; }
@@ -219,7 +227,7 @@ function renderList() {
     .filter((r) => !q || [r.name, r.subtitle || "", ...r.tags, ...r.ingredients.map((i) => i.name)].join(" ").toLowerCase().includes(q))
     .sort((a, b) => total(a) - total(b));
   $("#cards").innerHTML = hits.length
-    ? hits.map((r) => `<button class="card" data-id="${r.id}"><span class="tag">${tilde(r)}${total(r)} min</span><div class="t">${esc(r.name)}</div>
+    ? hits.map((r) => `<button class="card" data-id="${r.id}">${r.image ? `<img class="ph" src="${esc(r.image)}" alt="${esc(r.image_alt || r.name)}" loading="lazy">` : ""}<span class="tag">${tilde(r)}${total(r)} min</span><div class="t">${esc(r.name)}</div>
         <div class="m">${r.ingredients.length} ingredients${state.plan[r.id] ? " · on list" : ""}</div></button>`).join("")
     : `<div class="empty">No recipe matches.</div>`;
   $("#cards").querySelectorAll(".card").forEach((c) => (c.onclick = () => openDetail(c.dataset.id)));
@@ -240,6 +248,8 @@ function openDetail(id) {
     <button class="quiet" id="back">← All recipes</button>
     <h1>${esc(r.name)}</h1>
     ${r.subtitle ? `<p class="sub">${esc(r.subtitle)}</p>` : ""}
+    ${r.image ? `<div class="hero"><img src="${esc(r.image)}" alt="${esc(r.image_alt || r.name)}"></div>
+      ${r.image_credit ? `<p class="credit"><a href="${esc(r.image_credit.url)}" target="_blank" rel="noopener">${esc(r.image_credit.text)}</a></p>` : ""}` : ""}
     <div class="times">
       <div><b>${tilde(r)}${r.prep_minutes}</b><span>prep min</span></div>
       <div><b>${tilde(r)}${r.cook_minutes}</b><span>cook min</span></div>

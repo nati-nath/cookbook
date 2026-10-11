@@ -2,25 +2,122 @@
   {
     "id": "okonomiyaki",
     "name": "Okonomiyaki",
-    "tags": ["japanese", "pancake", "weeknight"],
+    "image": "images/okonomiyaki.jpg",
+    "image_alt": "Okonomiyaki topped with mayonnaise, sauce and aonori",
+    "image_credit": {
+      "text": "Photo: ume-y, CC BY 2.0, via Wikimedia Commons",
+      "url": "https://commons.wikimedia.org/wiki/File:Okonomiyaki_001.jpg"
+    },
+    "tags": [
+      "japanese",
+      "pancake",
+      "weeknight"
+    ],
     "prep_minutes": 10,
     "cook_minutes": 10,
     "time_is_estimate": true,
     "source": "aisletotokyo, Day 35/100",
     "ingredients": [
-      { "name": "unsmoked bacon", "qty": 2, "unit": "slices", "aisle": "meat" },
-      { "name": "cabbage, shredded", "qty": 120, "unit": "g", "aisle": "produce" },
-      { "group": "Batter", "name": "plain flour", "qty": 100, "unit": "g", "aisle": "pantry", "pantry": true },
-      { "group": "Batter", "name": "soy sauce", "qty": 1.5, "unit": "tsp", "aisle": "pantry", "pantry": true },
-      { "group": "Batter", "name": "garlic", "qty": 0.5, "unit": "clove", "aisle": "produce" },
-      { "group": "Batter", "name": "water", "qty": 125, "unit": "ml", "aisle": "pantry", "pantry": true, "no_grocery": true },
-      { "group": "Batter", "name": "egg", "qty": 1, "unit": "", "aisle": "dairy & eggs" },
-      { "group": "Sauce", "name": "ketchup", "qty": 2, "unit": "tbsp", "aisle": "pantry", "pantry": true },
-      { "group": "Sauce", "name": "sugar", "qty": 0.5, "unit": "tbsp", "aisle": "pantry", "pantry": true },
-      { "group": "Sauce", "name": "soy sauce", "qty": 2, "unit": "tsp", "aisle": "pantry", "pantry": true },
-      { "group": "Sauce", "name": "ground roasted sesame seeds", "qty": 1, "unit": "tbsp", "aisle": "pantry", "pantry": true },
-      { "group": "Garnish", "name": "mayonnaise", "qty": null, "unit": "", "note": "to taste", "aisle": "pantry", "pantry": true },
-      { "name": "oil", "qty": null, "unit": "", "note": "for the pan", "aisle": "pantry", "pantry": true }
+      {
+        "name": "unsmoked bacon",
+        "qty": 2,
+        "unit": "slices",
+        "aisle": "meat"
+      },
+      {
+        "name": "cabbage, shredded",
+        "qty": 120,
+        "unit": "g",
+        "aisle": "produce"
+      },
+      {
+        "group": "Batter",
+        "name": "plain flour",
+        "qty": 100,
+        "unit": "g",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "Batter",
+        "name": "soy sauce",
+        "qty": 1.5,
+        "unit": "tsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "Batter",
+        "name": "garlic",
+        "qty": 0.5,
+        "unit": "clove",
+        "aisle": "produce"
+      },
+      {
+        "group": "Batter",
+        "name": "water",
+        "qty": 125,
+        "unit": "ml",
+        "aisle": "pantry",
+        "pantry": true,
+        "no_grocery": true
+      },
+      {
+        "group": "Batter",
+        "name": "egg",
+        "qty": 1,
+        "unit": "",
+        "aisle": "dairy & eggs"
+      },
+      {
+        "group": "Sauce",
+        "name": "ketchup",
+        "qty": 2,
+        "unit": "tbsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "Sauce",
+        "name": "sugar",
+        "qty": 0.5,
+        "unit": "tbsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "Sauce",
+        "name": "soy sauce",
+        "qty": 2,
+        "unit": "tsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "Sauce",
+        "name": "ground roasted sesame seeds",
+        "qty": 1,
+        "unit": "tbsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "Garnish",
+        "name": "mayonnaise",
+        "qty": null,
+        "unit": "",
+        "note": "to taste",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "oil",
+        "qty": null,
+        "unit": "",
+        "note": "for the pan",
+        "aisle": "pantry",
+        "pantry": true
+      }
     ],
     "steps": [
       "Cut the bacon into bite-sized pieces.",
@@ -42,25 +139,122 @@
     "id": "tsukune",
     "name": "Tsukune",
     "subtitle": "Japanese chicken meatballs",
-    "tags": ["japanese", "high-protein", "weeknight"],
+    "image": "images/tsukune.jpg",
+    "image_alt": "Glazed tsukune chicken meatballs on skewers",
+    "image_credit": {
+      "text": "Photo: Arnold Gatilao, CC BY 2.0, via Wikimedia Commons",
+      "url": "https://commons.wikimedia.org/wiki/File:Tsukune_(chicken_meatballs)_(16065642291).jpg"
+    },
+    "tags": [
+      "japanese",
+      "high-protein",
+      "weeknight"
+    ],
     "prep_minutes": 10,
     "cook_minutes": 12,
     "time_is_estimate": true,
     "source": "aisletotokyo, Day 34/100",
     "ingredients": [
-      { "name": "minced chicken or turkey", "qty": 250, "unit": "g", "aisle": "meat" },
-      { "name": "onion", "qty": 70, "unit": "g", "aisle": "produce" },
-      { "group": "Seasoning", "name": "egg", "qty": 1, "unit": "", "note": "small", "aisle": "dairy & eggs" },
-      { "group": "Seasoning", "name": "plain flour", "qty": 2, "unit": "tbsp", "aisle": "pantry", "pantry": true },
-      { "group": "Seasoning", "name": "soy sauce", "qty": 1, "unit": "tsp", "aisle": "pantry", "pantry": true },
-      { "group": "Seasoning", "name": "sugar", "qty": 1, "unit": "tsp", "aisle": "pantry", "pantry": true },
-      { "group": "Seasoning", "name": "fresh ginger, grated", "qty": 1, "qty_max": 2, "unit": "tsp", "aisle": "produce" },
-      { "group": "Sauce", "name": "dry, low-acidity white wine", "qty": 2, "unit": "tbsp", "note": "for example Pinot Gris", "aisle": "drinks" },
-      { "group": "Sauce", "name": "sugar", "qty": 1, "unit": "tbsp", "aisle": "pantry", "pantry": true },
-      { "group": "Sauce", "name": "soy sauce", "qty": 1, "unit": "tbsp", "aisle": "pantry", "pantry": true },
-      { "group": "Sauce", "name": "toasted sesame seeds", "qty": 0.5, "unit": "tbsp", "aisle": "pantry", "pantry": true },
-      { "group": "Garnish", "name": "spring onions", "qty": null, "unit": "", "note": "chopped", "aisle": "produce" },
-      { "name": "sesame oil", "qty": null, "unit": "", "note": "for the pan", "aisle": "pantry", "pantry": true }
+      {
+        "name": "minced chicken or turkey",
+        "qty": 250,
+        "unit": "g",
+        "aisle": "meat"
+      },
+      {
+        "name": "onion",
+        "qty": 70,
+        "unit": "g",
+        "aisle": "produce"
+      },
+      {
+        "group": "Seasoning",
+        "name": "egg",
+        "qty": 1,
+        "unit": "",
+        "note": "small",
+        "aisle": "dairy & eggs"
+      },
+      {
+        "group": "Seasoning",
+        "name": "plain flour",
+        "qty": 2,
+        "unit": "tbsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "Seasoning",
+        "name": "soy sauce",
+        "qty": 1,
+        "unit": "tsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "Seasoning",
+        "name": "sugar",
+        "qty": 1,
+        "unit": "tsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "Seasoning",
+        "name": "fresh ginger, grated",
+        "qty": 1,
+        "qty_max": 2,
+        "unit": "tsp",
+        "aisle": "produce"
+      },
+      {
+        "group": "Sauce",
+        "name": "dry, low-acidity white wine",
+        "qty": 2,
+        "unit": "tbsp",
+        "note": "for example Pinot Gris",
+        "aisle": "drinks"
+      },
+      {
+        "group": "Sauce",
+        "name": "sugar",
+        "qty": 1,
+        "unit": "tbsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "Sauce",
+        "name": "soy sauce",
+        "qty": 1,
+        "unit": "tbsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "Sauce",
+        "name": "toasted sesame seeds",
+        "qty": 0.5,
+        "unit": "tbsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "Garnish",
+        "name": "spring onions",
+        "qty": null,
+        "unit": "",
+        "note": "chopped",
+        "aisle": "produce"
+      },
+      {
+        "name": "sesame oil",
+        "qty": null,
+        "unit": "",
+        "note": "for the pan",
+        "aisle": "pantry",
+        "pantry": true
+      }
     ],
     "steps": [
       "Mince the onion.",
@@ -78,22 +272,89 @@
     "id": "roasted-courgettes-tomatoes-halloumi",
     "name": "Roasted courgettes, tomatoes and halloumi",
     "subtitle": "Courgettes rôties, tomates et halloumi",
-    "tags": ["french", "vegetarian", "oven", "one-tray"],
+    "image": "images/roasted-courgettes-tomatoes-halloumi.jpg",
+    "image_alt": "Bowl of roasted courgettes, cherry tomatoes and halloumi on rice, topped with spring onion and lemon zest",
+    "tags": [
+      "french",
+      "vegetarian",
+      "oven",
+      "one-tray"
+    ],
     "prep_minutes": 10,
     "cook_minutes": 25,
     "time_is_estimate": true,
     "source": "whoogys",
     "ingredients": [
-      { "name": "courgettes", "qty": 2, "unit": "", "aisle": "produce" },
-      { "name": "cherry tomatoes", "qty": 21, "unit": "", "aisle": "produce" },
-      { "name": "garlic", "qty": 2, "unit": "clove", "aisle": "produce" },
-      { "name": "halloumi", "qty": 1, "unit": "block", "aisle": "dairy & eggs" },
-      { "name": "salt", "qty": null, "unit": "", "note": "to taste", "aisle": "pantry", "pantry": true },
-      { "name": "black pepper", "qty": null, "unit": "", "note": "to taste", "aisle": "pantry", "pantry": true },
-      { "name": "piment d'Espelette", "qty": null, "unit": "", "note": "or mild chilli flakes", "aisle": "pantry", "pantry": true },
-      { "name": "dried oregano", "qty": 1, "unit": "tbsp", "aisle": "pantry", "pantry": true },
-      { "group": "To serve", "name": "lemon", "qty": 1, "unit": "", "aisle": "produce" },
-      { "group": "To serve", "name": "spring onions", "qty": 1, "unit": "", "note": "cébette", "aisle": "produce" }
+      {
+        "name": "courgettes",
+        "qty": 2,
+        "unit": "",
+        "aisle": "produce"
+      },
+      {
+        "name": "cherry tomatoes",
+        "qty": 21,
+        "unit": "",
+        "aisle": "produce"
+      },
+      {
+        "name": "garlic",
+        "qty": 2,
+        "unit": "clove",
+        "aisle": "produce"
+      },
+      {
+        "name": "halloumi",
+        "qty": 1,
+        "unit": "block",
+        "aisle": "dairy & eggs"
+      },
+      {
+        "name": "salt",
+        "qty": null,
+        "unit": "",
+        "note": "to taste",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "black pepper",
+        "qty": null,
+        "unit": "",
+        "note": "to taste",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "piment d'Espelette",
+        "qty": null,
+        "unit": "",
+        "note": "or mild chilli flakes",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "dried oregano",
+        "qty": 1,
+        "unit": "tbsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "To serve",
+        "name": "lemon",
+        "qty": 1,
+        "unit": "",
+        "aisle": "produce"
+      },
+      {
+        "group": "To serve",
+        "name": "spring onions",
+        "qty": 1,
+        "unit": "",
+        "note": "cébette",
+        "aisle": "produce"
+      }
     ],
     "steps": [
       "Heat the oven to 200 C.",
