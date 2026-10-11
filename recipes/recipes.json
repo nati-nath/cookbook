@@ -1,0 +1,107 @@
+[
+  {
+    "id": "okonomiyaki",
+    "name": "Okonomiyaki",
+    "tags": ["japanese", "pancake", "weeknight"],
+    "prep_minutes": 10,
+    "cook_minutes": 10,
+    "time_is_estimate": true,
+    "source": "aisletotokyo, Day 35/100",
+    "ingredients": [
+      { "name": "unsmoked bacon", "qty": 2, "unit": "slices", "aisle": "meat" },
+      { "name": "cabbage, shredded", "qty": 120, "unit": "g", "aisle": "produce" },
+      { "group": "Batter", "name": "plain flour", "qty": 100, "unit": "g", "aisle": "pantry", "pantry": true },
+      { "group": "Batter", "name": "soy sauce", "qty": 1.5, "unit": "tsp", "aisle": "pantry", "pantry": true },
+      { "group": "Batter", "name": "garlic", "qty": 0.5, "unit": "clove", "aisle": "produce" },
+      { "group": "Batter", "name": "water", "qty": 125, "unit": "ml", "aisle": "pantry", "pantry": true, "no_grocery": true },
+      { "group": "Batter", "name": "egg", "qty": 1, "unit": "", "aisle": "dairy & eggs" },
+      { "group": "Sauce", "name": "ketchup", "qty": 2, "unit": "tbsp", "aisle": "pantry", "pantry": true },
+      { "group": "Sauce", "name": "sugar", "qty": 0.5, "unit": "tbsp", "aisle": "pantry", "pantry": true },
+      { "group": "Sauce", "name": "soy sauce", "qty": 2, "unit": "tsp", "aisle": "pantry", "pantry": true },
+      { "group": "Sauce", "name": "ground roasted sesame seeds", "qty": 1, "unit": "tbsp", "aisle": "pantry", "pantry": true },
+      { "group": "Garnish", "name": "mayonnaise", "qty": null, "unit": "", "note": "to taste", "aisle": "pantry", "pantry": true },
+      { "name": "oil", "qty": null, "unit": "", "note": "for the pan", "aisle": "pantry", "pantry": true }
+    ],
+    "steps": [
+      "Cut the bacon into bite-sized pieces.",
+      "Mix the flour, soy sauce and water. Fold in the egg, grated garlic and cabbage.",
+      "Heat oil in a pan and saute the bacon.",
+      "Spread the batter on top of the bacon and sear over medium heat until the bacon is crispy.",
+      "Flip and cook until the batter is done.",
+      "Mix all the sauce ingredients.",
+      "Plate and add the sauce and mayonnaise."
+    ],
+    "variations": [
+      "Use okonomiyaki sauce (for example Otafuku) instead of the sauce above.",
+      "Add 1 tsp dashi powder to the batter instead of soy sauce.",
+      "Use thinly sliced pork belly instead of bacon.",
+      "Garnish with Kewpie mayo, bonito flakes and aonori."
+    ]
+  },
+  {
+    "id": "tsukune",
+    "name": "Tsukune",
+    "subtitle": "Japanese chicken meatballs",
+    "tags": ["japanese", "high-protein", "weeknight"],
+    "prep_minutes": 10,
+    "cook_minutes": 12,
+    "time_is_estimate": true,
+    "source": "aisletotokyo, Day 34/100",
+    "ingredients": [
+      { "name": "minced chicken or turkey", "qty": 250, "unit": "g", "aisle": "meat" },
+      { "name": "onion", "qty": 70, "unit": "g", "aisle": "produce" },
+      { "group": "Seasoning", "name": "egg", "qty": 1, "unit": "", "note": "small", "aisle": "dairy & eggs" },
+      { "group": "Seasoning", "name": "plain flour", "qty": 2, "unit": "tbsp", "aisle": "pantry", "pantry": true },
+      { "group": "Seasoning", "name": "soy sauce", "qty": 1, "unit": "tsp", "aisle": "pantry", "pantry": true },
+      { "group": "Seasoning", "name": "sugar", "qty": 1, "unit": "tsp", "aisle": "pantry", "pantry": true },
+      { "group": "Seasoning", "name": "fresh ginger, grated", "qty": 1, "qty_max": 2, "unit": "tsp", "aisle": "produce" },
+      { "group": "Sauce", "name": "dry, low-acidity white wine", "qty": 2, "unit": "tbsp", "note": "for example Pinot Gris", "aisle": "drinks" },
+      { "group": "Sauce", "name": "sugar", "qty": 1, "unit": "tbsp", "aisle": "pantry", "pantry": true },
+      { "group": "Sauce", "name": "soy sauce", "qty": 1, "unit": "tbsp", "aisle": "pantry", "pantry": true },
+      { "group": "Sauce", "name": "toasted sesame seeds", "qty": 0.5, "unit": "tbsp", "aisle": "pantry", "pantry": true },
+      { "group": "Garnish", "name": "spring onions", "qty": null, "unit": "", "note": "chopped", "aisle": "produce" },
+      { "name": "sesame oil", "qty": null, "unit": "", "note": "for the pan", "aisle": "pantry", "pantry": true }
+    ],
+    "steps": [
+      "Mince the onion.",
+      "Mix the minced meat, onion and the seasoning ingredients in a bowl.",
+      "Shape into rounds and pan-fry in sesame oil over medium heat until both sides are browned.",
+      "Reduce the heat to low, add the combined sauce and simmer until coated and glossy.",
+      "Garnish with chopped spring onions."
+    ],
+    "variations": [
+      "Use 2 tbsp mirin instead of the white wine, and cut the sauce sugar from 1 tbsp to 1/2 tsp."
+    ],
+    "note": "The wine must be dry and low in acidity. A cheap one is fine; avoid fruity wine."
+  },
+  {
+    "id": "roasted-courgettes-tomatoes-halloumi",
+    "name": "Roasted courgettes, tomatoes and halloumi",
+    "subtitle": "Courgettes rôties, tomates et halloumi",
+    "tags": ["french", "vegetarian", "oven", "one-tray"],
+    "prep_minutes": 10,
+    "cook_minutes": 25,
+    "time_is_estimate": true,
+    "source": "whoogys",
+    "ingredients": [
+      { "name": "courgettes", "qty": 2, "unit": "", "aisle": "produce" },
+      { "name": "cherry tomatoes", "qty": 21, "unit": "", "aisle": "produce" },
+      { "name": "garlic", "qty": 2, "unit": "clove", "aisle": "produce" },
+      { "name": "halloumi", "qty": 1, "unit": "block", "aisle": "dairy & eggs" },
+      { "name": "salt", "qty": null, "unit": "", "note": "to taste", "aisle": "pantry", "pantry": true },
+      { "name": "black pepper", "qty": null, "unit": "", "note": "to taste", "aisle": "pantry", "pantry": true },
+      { "name": "piment d'Espelette", "qty": null, "unit": "", "note": "or mild chilli flakes", "aisle": "pantry", "pantry": true },
+      { "name": "dried oregano", "qty": 1, "unit": "tbsp", "aisle": "pantry", "pantry": true },
+      { "group": "To serve", "name": "lemon", "qty": 1, "unit": "", "aisle": "produce" },
+      { "group": "To serve", "name": "spring onions", "qty": 1, "unit": "", "note": "cébette", "aisle": "produce" }
+    ],
+    "steps": [
+      "Heat the oven to 200 C.",
+      "Slice the courgettes thinly, halve the tomatoes if you like, crush the garlic and cube the halloumi.",
+      "Toss everything on one tray with oil, salt, pepper, piment d'Espelette and oregano.",
+      "Roast until the courgettes are soft and the halloumi is golden, stirring once.",
+      "Finish with lemon juice and sliced spring onion."
+    ],
+    "method_inferred": true
+  }
+]

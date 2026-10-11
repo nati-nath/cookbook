@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cookbook</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Cookbook">
+<meta name="theme-color" content="#000000">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+
+<style>
+  :root {
+    --bg: #000; --ink: #fff; --dim: #808080; --line: #fff; --line-soft: #3a3a3a;
+    --yellow: #ff0; --red: #f00;
+    --mono: "Courier New", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: var(--bg); color: var(--ink); font-family: var(--mono);
+    -webkit-font-smoothing: antialiased;
+    display: flex; flex-direction: column;
+    padding: calc(env(safe-area-inset-top) + 1.25rem) 1.25rem calc(env(safe-area-inset-bottom) + 1rem);
+  }
+  header {
+    flex: 0 0 auto; color: var(--dim); font-size: 0.72rem; letter-spacing: 0.14em;
+    text-transform: uppercase; font-weight: 700; text-align: center;
+    border-bottom: 2px solid var(--line-soft); padding-bottom: 0.6rem;
+  }
+  main { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 1rem 0; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  button {
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 700; color: var(--ink); background: transparent; border: 2px solid var(--line);
+    border-radius: 0; padding: 0.7rem 1rem; cursor: pointer;
+  }
+  button:active { background: var(--ink); color: #000; }
+  button.on { background: var(--yellow); border-color: var(--yellow); color: #000; }
+  button.quiet { border: none; color: var(--dim); padding: 0.4rem 0.6rem; }
+  button.danger { border-color: var(--red); color: var(--red); }
+
+  input[type=search] {
+    width: 100%; font-family: var(--mono); font-size: 1rem; color: var(--ink); background: #000;
+    border: 2px solid var(--line); border-radius: 0; padding: 0.7rem; margin-bottom: 0.8rem;
+    -webkit-user-select: text; user-select: text;
+  }
+  .chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .chips button { padding: 0.45rem 0.7rem; font-size: 0.68rem; }
+
+  .card {
+    display: block; width: 100%; text-align: left; text-transform: none; letter-spacing: 0;
+    border: 2px solid var(--line); padding: 0.9rem; margin-bottom: 0.8rem; font-size: 1rem;
+  }
+  .card .t { font-weight: 700; font-size: 1.05rem; }
+  .card .m { color: var(--dim); font-size: 0.78rem; margin-top: 0.4rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .card:active .m { color: #333; }
+  .empty { color: var(--dim); text-align: center; margin-top: 2rem; line-height: 1.6; }
+
+  h1 { font-size: 1.35rem; line-height: 1.25; margin: 0.6rem 0 0.2rem; }
+  h2 {
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim);
+    border-bottom: 1px solid var(--line-soft); padding-bottom: 0.3rem; margin: 1.4rem 0 0.6rem;
+  }
+  .sub { color: var(--dim); margin: 0 0 0.8rem; }
+  .times { display: flex; gap: 0.6rem; margin: 0.8rem 0; }
+  .times div { flex: 1; border: 2px solid var(--line); padding: 0.5rem; text-align: center; }
+  .times b { display: block; font-size: 1.15rem; }
+  .times span { color: var(--dim); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .flag { background: var(--yellow); color: #000; padding: 0.3rem 0.6rem; font-size: 0.75rem; text-transform: uppercase; display: inline-block; margin: 0.4rem 0; }
+
+  ul.ing, ol.steps { padding: 0; margin: 0; list-style: none; }
+  ul.ing li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.45rem 0; border-bottom: 1px solid var(--line-soft); }
+  ul.ing li .q { color: var(--yellow); white-space: nowrap; }
+  .grp { color: var(--dim); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0.8rem 0 0.2rem; }
+  ol.steps { counter-reset: s; }
+  ol.steps li { counter-increment: s; display: flex; gap: 0.8rem; padding: 0.55rem 0; line-height: 1.45; }
+  ol.steps li::before { content: counter(s); color: var(--yellow); font-weight: 700; min-width: 1rem; }
+  ul.plain { padding-left: 1.1rem; line-height: 1.5; }
+
+  .bar { display: flex; gap: 0.6rem; margin: 0.8rem 0; flex-wrap: wrap; }
+  .bar button { flex: 1 1 auto; }
+
+  .plan { display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--line-soft); padding: 0.5rem 0; }
+  .plan .n { flex: 1; }
+  .plan button { padding: 0.3rem 0.7rem; }
+  .plan .c { min-width: 1.4rem; text-align: center; font-weight: 700; }
+  label.item { display: flex; gap: 0.8rem; align-items: baseline; padding: 0.6rem 0; border-bottom: 1px solid var(--line-soft); }
+  label.item input { accent-color: var(--yellow); width: 1.1rem; height: 1.1rem; flex: none; align-self: center; }
+  label.item .q { color: var(--yellow); white-space: nowrap; }
+  label.item.done { color: var(--dim); text-decoration: line-through; }
+  label.item.done .q { color: var(--dim); }
+
+  #tabbar { flex: 0 0 auto; display: flex; border-top: 3px solid var(--line); }
+  #tabbar button { flex: 1; border: none; border-right: 1px solid var(--line-soft); color: var(--dim); padding: 0.9rem 0.2rem; }
+  #tabbar button:last-child { border-right: none; }
+  #tabbar button.active { background: var(--yellow); color: #000; }
+</style>
+</head>
+<body>
+<header id="head">Cookbook</header>
+<main>
+  <section id="tab-recipes" class="panel active">
+    <div id="list-view">
+      <input id="q" type="search" placeholder="Search name, tag or ingredient" autocomplete="off">
+      <div class="chips" id="time-chips"></div>
+      <div class="chips" id="tag-chips"></div>
+      <div id="cards"></div>
+    </div>
+    <div id="detail-view" hidden></div>
+  </section>
+  <section id="tab-grocery" class="panel"></section>
+</main>
+<nav id="tabbar">
+  <button data-tab="recipes" class="active">Recipes</button>
+  <button data-tab="grocery">Grocery <span id="gcount"></span></button>
+</nav>
+
+<script>
+const KEY = "cookbook.v1";
+let recipes = [];
+let state = { plan: {}, checked: {} };   // plan: {recipeId: times}; checked: {itemKey: true}
+const ui = { maxTime: 0, tag: "", query: "" };
+
+try { state = Object.assign(state, JSON.parse(localStorage.getItem(KEY)) || {}); } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const total = (r) => r.prep_minutes + r.cook_minutes;
+const tilde = (r) => (r.time_is_estimate ? "~" : "");
+
+// ---- amounts -------------------------------------------------------------
+const FRACS = [[0.125, "⅛"], [0.25, "¼"], [1 / 3, "⅓"], [0.5, "½"], [2 / 3, "⅔"], [0.75, "¾"]];
+function num(x) {
+  const whole = Math.floor(x + 1e-9), rest = x - whole;
+  if (rest < 0.05) return String(whole);
+  const f = FRACS.find(([v]) => Math.abs(v - rest) < 0.05);
+  if (f) return (whole ? whole : "") + f[1];
+  return String(Math.round(x * 10) / 10);
+}
+function range(lo, hi) { return hi && hi !== lo ? `${num(lo)}–${num(hi)}` : num(lo); }
+function spoons(tsp) {   // 3 tsp = 1 tbsp
+  const tb = Math.floor(tsp / 3 + 1e-9), t = tsp - tb * 3;
+  return [tb ? `${num(tb)} tbsp` : "", t > 0.01 ? `${num(t)} tsp` : ""].filter(Boolean).join(" + ");
+}
+function fmtQty(it) {
+  if (it.qty == null) return it.note || "";
+  const spoon = it.unit === "tsp" || it.unit === "tbsp";
+  if (spoon) {
+    const f = it.unit === "tbsp" ? 3 : 1;
+    const lo = it.qty * f, hi = (it.qty_max ?? it.qty) * f;
+    return hi !== lo ? `${num(lo)}–${num(hi)} tsp` : spoons(lo);
+  }
+  const many = (it.qty_max ?? it.qty) > 1 && /^(clove|block)$/.test(it.unit);
+  return `${range(it.qty, it.qty_max)}${it.unit ? " " + it.unit + (many ? "s" : "") : ""}`;
+}
+
+// ---- tabs ----------------------------------------------------------------
+function showTab(name) {
+  document.querySelectorAll("#tabbar button").forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
+  document.querySelectorAll(".panel").forEach((p) => p.classList.toggle("active", p.id === "tab-" + name));
+  $("#head").textContent = name === "grocery" ? "Grocery list" : "Cookbook";
+  if (name === "grocery") renderGrocery(); else closeDetail();
+}
+document.querySelectorAll("#tabbar button").forEach((b) => (b.onclick = () => showTab(b.dataset.tab)));
+
+// ---- recipe list ---------------------------------------------------------
+function chips(el, items, current, onPick) {
+  el.innerHTML = items.map(([v, label]) => `<button data-v="${esc(v)}" class="${v === current ? "on" : ""}">${esc(label)}</button>`).join("");
+  el.querySelectorAll("button").forEach((b) => (b.onclick = () => onPick(b.dataset.v)));
+}
+function renderList() {
+  chips($("#time-chips"), [["0", "Any time"], ["20", "≤ 20 min"], ["30", "≤ 30 min"], ["45", "≤ 45 min"]], String(ui.maxTime),
+    (v) => { ui.maxTime = +v; renderList(); });
+  const tags = [...new Set(recipes.flatMap((r) => r.tags))].sort();
+  chips($("#tag-chips"), [["", "All"], ...tags.map((t) => [t, t])], ui.tag, (v) => { ui.tag = v; renderList(); });
+
+  const q = ui.query.trim().toLowerCase();
+  const hits = recipes
+    .filter((r) => !ui.maxTime || total(r) <= ui.maxTime)
+    .filter((r) => !ui.tag || r.tags.includes(ui.tag))
+    .filter((r) => !q || [r.name, r.subtitle || "", ...r.tags, ...r.ingredients.map((i) => i.name)].join(" ").toLowerCase().includes(q))
+    .sort((a, b) => total(a) - total(b));
+  $("#cards").innerHTML = hits.length
+    ? hits.map((r) => `<button class="card" data-id="${r.id}"><div class="t">${esc(r.name)}</div>
+        <div class="m">${tilde(r)}${total(r)} min · ${r.ingredients.length} ingredients${state.plan[r.id] ? " · on list" : ""}</div></button>`).join("")
+    : `<div class="empty">No recipe matches.</div>`;
+  $("#cards").querySelectorAll(".card").forEach((c) => (c.onclick = () => openDetail(c.dataset.id)));
+}
+$("#q").oninput = (e) => { ui.query = e.target.value; renderList(); };
+
+// ---- recipe detail -------------------------------------------------------
+function openDetail(id) {
+  const r = recipes.find((x) => x.id === id);
+  let last = null, ing = "";
+  for (const i of r.ingredients) {
+    if ((i.group || "") !== last) { last = i.group || ""; if (last) ing += `<div class="grp">${esc(last)}</div>`; }
+    const q = i.qty == null ? i.note || "" : fmtQty(i) + (i.note ? ` (${i.note})` : "");
+    ing += `<li><span>${esc(i.name)}</span><span class="q">${esc(q)}</span></li>`;
+  }
+  const on = state.plan[id];
+  $("#detail-view").innerHTML = `
+    <button class="quiet" id="back">← All recipes</button>
+    <h1>${esc(r.name)}</h1>
+    ${r.subtitle ? `<p class="sub">${esc(r.subtitle)}</p>` : ""}
+    <div class="times">
+      <div><b>${tilde(r)}${r.prep_minutes}</b><span>prep min</span></div>
+      <div><b>${tilde(r)}${r.cook_minutes}</b><span>cook min</span></div>
+      <div><b>${tilde(r)}${total(r)}</b><span>total min</span></div>
+    </div>
+    <div class="bar"><button id="add" class="${on ? "on" : ""}">${on ? "On grocery list ✓ (tap to remove)" : "+ Add to grocery list"}</button></div>
+    <h2>Ingredients</h2><ul class="ing">${ing}</ul>
+    <h2>Method</h2>
+    ${r.method_inferred ? `<div class="flag">Method not in the source. Typical roast, edit me</div>` : ""}
+    <ol class="steps">${r.steps.map((s) => `<li><span>${esc(s)}</span></li>`).join("")}</ol>
+    ${r.note ? `<h2>Note</h2><p>${esc(r.note)}</p>` : ""}
+    ${r.variations && r.variations.length ? `<h2>Variations</h2><ul class="plain">${r.variations.map((v) => `<li>${esc(v)}</li>`).join("")}</ul>` : ""}
+    <h2>Source</h2><p class="sub">${esc(r.source)}</p>`;
+  $("#back").onclick = closeDetail;
+  $("#add").onclick = () => { if (state.plan[id]) delete state.plan[id]; else state.plan[id] = 1; save(); updateCount(); openDetail(id); };
+  $("#list-view").hidden = true; $("#detail-view").hidden = false;
+  document.querySelector("main").scrollTop = 0;
+}
+function closeDetail() { $("#detail-view").hidden = true; $("#list-view").hidden = false; renderList(); }
+
+// ---- grocery list --------------------------------------------------------
+function buildList() {
+  const map = new Map();
+  for (const [id, times] of Object.entries(state.plan)) {
+    const r = recipes.find((x) => x.id === id);
+    if (!r) continue;
+    for (const i of r.ingredients) {
+      if (i.no_grocery) continue;
+      const spoon = i.unit === "tsp" || i.unit === "tbsp";
+      const unit = spoon ? "tsp" : i.unit;                       // spoons are summed in tsp
+      const f = i.unit === "tbsp" ? 3 : 1;
+      const key = `${i.name}|${unit}`;
+      const e = map.get(key) || { key, name: i.name, unit, aisle: i.aisle, pantry: !!i.pantry, qty: null, qty_max: null, notes: new Set() };
+      if (i.qty != null) {
+        e.qty = (e.qty || 0) + i.qty * f * times;
+        e.qty_max = (e.qty_max || 0) + (i.qty_max ?? i.qty) * f * times;
+      } else if (i.note) e.notes.add(i.note);
+      map.set(key, e);
+    }
+  }
+  return [...map.values()].map((e) => {
+    const out = { ...e, q: "" };
+    if (e.qty != null) out.q = fmtQty({ qty: e.qty, qty_max: e.qty_max === e.qty ? null : e.qty_max, unit: e.unit });
+    else out.q = [...e.notes].join(", ");
+    return out;
+  });
+}
+function updateCount() {
+  const n = Object.keys(state.plan).length;
+  $("#gcount").textContent = n ? `(${n})` : "";
+}
+function renderGrocery() {
+  const el = $("#tab-grocery");
+  const ids = Object.keys(state.plan).filter((id) => recipes.some((r) => r.id === id));
+  if (!ids.length) {
+    el.innerHTML = `<div class="empty">Nothing planned yet.<br>Open a recipe and tap “Add to grocery list”.</div>`;
+    return;
+  }
+  const items = buildList();
+  const buy = items.filter((i) => !i.pantry), pantry = items.filter((i) => i.pantry);
+  const aisles = [...new Set(buy.map((i) => i.aisle))].sort();
+  const row = (i) => `<label class="item ${state.checked[i.key] ? "done" : ""}"><input type="checkbox" data-k="${esc(i.key)}" ${state.checked[i.key] ? "checked" : ""}>
+      <span style="flex:1">${esc(i.name)}</span><span class="q">${esc(i.q)}</span></label>`;
+  el.innerHTML = `
+    <h2 style="margin-top:0">Planned</h2>
+    ${ids.map((id) => { const r = recipes.find((x) => x.id === id); return `<div class="plan"><span class="n">${esc(r.name)}</span>
+      <button data-id="${id}" data-d="-1">−</button><span class="c">${state.plan[id]}</span><button data-id="${id}" data-d="1">+</button></div>`; }).join("")}
+    ${aisles.map((a) => `<h2>${esc(a)}</h2>${buy.filter((i) => i.aisle === a).map(row).join("")}`).join("")}
+    ${pantry.length ? `<h2>Check you have</h2>${pantry.map(row).join("")}` : ""}
+    <div class="bar"><button id="copy">Copy list</button><button id="untick">Untick all</button><button id="clear" class="danger">Clear all</button></div>`;
+
+  el.querySelectorAll(".plan button").forEach((b) => (b.onclick = () => {
+    const n = state.plan[b.dataset.id] + +b.dataset.d;
+    if (n < 1) delete state.plan[b.dataset.id]; else state.plan[b.dataset.id] = n;
+    save(); updateCount(); renderGrocery();
+  }));
+  el.querySelectorAll("input[type=checkbox]").forEach((c) => (c.onchange = () => {
+    if (c.checked) state.checked[c.dataset.k] = true; else delete state.checked[c.dataset.k];
+    save(); c.closest("label").classList.toggle("done", c.checked);
+  }));
+  $("#untick").onclick = () => { state.checked = {}; save(); renderGrocery(); };
+  $("#clear").onclick = () => { if (confirm("Clear the whole grocery list?")) { state.plan = {}; state.checked = {}; save(); updateCount(); renderGrocery(); } };
+  $("#copy").onclick = async () => {
+    const line = (i) => `- ${i.name}${i.q ? " — " + i.q : ""}`;
+    const text = [...aisles.map((a) => `${a.toUpperCase()}\n${buy.filter((i) => i.aisle === a).map(line).join("\n")}`),
+      pantry.length ? `CHECK YOU HAVE\n${pantry.map(line).join("\n")}` : ""].filter(Boolean).join("\n\n");
+    try { await navigator.clipboard.writeText(text); $("#copy").textContent = "Copied"; } catch (e) { prompt("Copy the list:", text); }
+  };
+}
+
+// ---- start ---------------------------------------------------------------
+fetch("recipes/recipes.json").then((r) => r.json()).then((data) => {
+  recipes = data; updateCount(); renderList();
+}).catch(() => { $("#cards").innerHTML = `<div class="empty">Could not load recipes.</div>`; });
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+</script>
+</body>
+</html>
