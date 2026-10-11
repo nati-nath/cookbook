@@ -61,10 +61,11 @@
     border: 2px solid var(--ink); padding: 12px; margin-bottom: var(--md); box-shadow: 4px 4px 0 var(--accent);
     -webkit-user-select: text; user-select: text;
   }
-  .chips { display: flex; gap: var(--sm); flex-wrap: wrap; margin-bottom: var(--md); }
-  .chips button { padding: 6px 12px; box-shadow: 2px 2px 0 var(--ink); }
-  #tag-chips { margin-left: var(--md); }
-  #tag-chips button.on { background: var(--accent); color: #fff; }
+  .filters { display: flex; gap: var(--sm); margin-bottom: var(--md); }
+  .filters select {
+    flex: 1; min-width: 0; font-family: var(--sans); font-size: 1rem; color: var(--ink); background: var(--surface);
+    border: 2px solid var(--ink); padding: 10px; box-shadow: 2px 2px 0 var(--ink); border-radius: 0;
+  }
 
   /* Recipe grid: square photo with the title underneath, four across */
   #cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--md) var(--sm); margin-bottom: var(--lg); }
@@ -156,8 +157,10 @@
   <section id="tab-recipes" class="panel active">
     <div id="list-view">
       <input id="q" type="search" placeholder="Search name, tag or ingredient" autocomplete="off">
-      <div class="chips" id="time-chips"></div>
-      <div class="chips" id="tag-chips"></div>
+      <div class="filters">
+        <select id="time-sel" aria-label="Time"></select>
+        <select id="tag-sel" aria-label="Category"></select>
+      </div>
       <div id="cards"></div>
     </div>
     <div id="detail-view" hidden></div>
@@ -247,15 +250,15 @@ function showTab(name) {
 document.querySelectorAll("#tabbar button").forEach((b) => (b.onclick = () => showTab(b.dataset.tab)));
 
 // ---- recipe list ---------------------------------------------------------
-function chips(el, items, current, onPick) {
-  el.innerHTML = items.map(([v, label]) => `<button data-v="${esc(v)}" class="${v === current ? "on" : ""}">${esc(label)}</button>`).join("");
-  el.querySelectorAll("button").forEach((b) => (b.onclick = () => onPick(b.dataset.v)));
-}
 function renderList() {
-  chips($("#time-chips"), [["0", "Any time"], ["20", "≤ 20 min"], ["30", "≤ 30 min"], ["45", "≤ 45 min"]], String(ui.maxTime),
+  const fill = (el, items, current, onPick) => {
+    el.innerHTML = items.map(([v, label]) => `<option value="${esc(v)}"${v === current ? " selected" : ""}>${esc(label)}</option>`).join("");
+    el.onchange = () => onPick(el.value);
+  };
+  fill($("#time-sel"), [["0", "Any time"], ["20", "Up to 20 min"], ["30", "Up to 30 min"], ["45", "Up to 45 min"]], String(ui.maxTime),
     (v) => { ui.maxTime = +v; renderList(); });
   const tags = [...new Set(recipes.flatMap((r) => r.tags))].sort();
-  chips($("#tag-chips"), [["", "All"], ...tags.map((t) => [t, t])], ui.tag, (v) => { ui.tag = v; renderList(); });
+  fill($("#tag-sel"), [["", "All categories"], ...tags.map((t) => [t, t])], ui.tag, (v) => { ui.tag = v; renderList(); });
 
   const q = ui.query.trim().toLowerCase();
   const hits = recipes
