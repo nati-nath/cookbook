@@ -88,6 +88,19 @@
   .hero img { display: block; width: 100%; max-height: 24rem; object-fit: cover; border: 2px solid var(--ink); background: var(--surface); }
   .credit { font-size: 0.75rem; color: var(--muted); margin: var(--md) 0 0; }
   .credit a { color: var(--muted); }
+
+  /* Request form */
+  .form label { display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin: var(--md) 0 4px; }
+  .form label small { display: block; color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 0.8rem; }
+  .form input, .form textarea {
+    width: 100%; font-family: var(--sans); font-size: 1rem; color: var(--ink); background: var(--surface);
+    border: 2px solid var(--ink); padding: 10px; -webkit-user-select: text; user-select: text;
+  }
+  .form textarea { min-height: 7rem; resize: vertical; }
+  .form .two { display: flex; gap: var(--md); }
+  .form .two > div { flex: 1; }
+  .form .err { color: #b00000; font-weight: 600; margin: 4px 0 0; }
+  .form button[type=submit] { background: var(--primary); margin-top: var(--lg); width: 100%; }
   .empty { color: var(--muted); margin-top: var(--lg); line-height: 1.6; }
 
   h1 { font-size: clamp(2.1rem, 10vw, 3.4rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; margin: var(--md) 0 var(--sm); overflow-wrap: anywhere; }
@@ -154,10 +167,37 @@
     <div id="detail-view" hidden></div>
   </section>
   <section id="tab-grocery" class="panel"></section>
+  <section id="tab-request" class="panel">
+    <p>Know a recipe that belongs here? Fill in what you can. Only the dish name is needed.</p>
+    <p class="sub">Sending opens GitHub with your answers filled in. You add a picture there, then press Submit. A free GitHub account is needed, and requests are public.</p>
+    <form class="form" id="req" novalidate>
+      <label for="f-name">Dish name *</label>
+      <input id="f-name" name="name" autocomplete="off" aria-describedby="f-name-err">
+      <p class="err" id="f-name-err" role="alert" hidden>Add a dish name so I know what to look for.</p>
+      <label for="f-photo">Picture <small>A link to a photo. You can also attach one on the next page.</small></label>
+      <input id="f-photo" name="photo" type="url" inputmode="url" autocomplete="off">
+      <div class="two">
+        <div><label for="f-prep">Prep (min)</label><input id="f-prep" name="prep" inputmode="numeric" autocomplete="off"></div>
+        <div><label for="f-cook">Cook (min)</label><input id="f-cook" name="cook" inputmode="numeric" autocomplete="off"></div>
+      </div>
+      <label for="f-tags">Tags <small>For example japanese, vegetarian, oven</small></label>
+      <input id="f-tags" name="tags" autocomplete="off">
+      <label for="f-ingredients">Ingredients <small>One per line, with the amount. For example “2 courgettes”.</small></label>
+      <textarea id="f-ingredients" name="ingredients"></textarea>
+      <label for="f-method">Method <small>One step per line.</small></label>
+      <textarea id="f-method" name="method"></textarea>
+      <label for="f-notes">Variations and notes</label>
+      <textarea id="f-notes" name="notes"></textarea>
+      <label for="f-source">Where is it from? <small>A link, or the name of a person or book.</small></label>
+      <input id="f-source" name="source" autocomplete="off">
+      <button type="submit">Send request on GitHub</button>
+    </form>
+  </section>
 </main>
 <nav id="tabbar">
   <button data-tab="recipes" class="active">Recipes</button>
   <button data-tab="grocery">Grocery <span id="gcount"></span></button>
+  <button data-tab="request">Request</button>
 </nav>
 
 <script>
@@ -204,7 +244,7 @@ function fmtQty(it) {
 function showTab(name) {
   document.querySelectorAll("#tabbar button").forEach((b) => b.classList.toggle("active", b.dataset.tab === name));
   document.querySelectorAll(".panel").forEach((p) => p.classList.toggle("active", p.id === "tab-" + name));
-  $("#head").textContent = name === "grocery" ? "Grocery list" : "Cookbook";
+  $("#head").textContent = { grocery: "Grocery list", request: "Request a recipe" }[name] || "Cookbook";
   if (name === "grocery") renderGrocery(); else closeDetail();
 }
 document.querySelectorAll("#tabbar button").forEach((b) => (b.onclick = () => showTab(b.dataset.tab)));
@@ -339,6 +379,25 @@ function renderGrocery() {
     try { await navigator.clipboard.writeText(text); $("#copy").textContent = "Copied"; } catch (e) { prompt("Copy the list:", text); }
   };
 }
+
+
+// ---- recipe request ------------------------------------------------------
+// Opens the repo's issue form with the answers filled in. Field names match the ids in
+// .github/ISSUE_TEMPLATE/recipe-request.yml.
+const REPO = "nati-nath/cookbook";
+$("#req").onsubmit = (e) => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const name = (f.get("name") || "").trim();
+  $("#f-name-err").hidden = !!name;
+  if (!name) { $("#f-name").focus(); return; }
+  const q = new URLSearchParams({ template: "recipe-request.yml", title: "Recipe request: " + name });
+  for (const k of ["name", "photo", "prep", "cook", "tags", "ingredients", "method", "notes", "source"]) {
+    const v = (f.get(k) || "").trim();
+    if (v) q.set(k, v);
+  }
+  window.open(`https://github.com/${REPO}/issues/new?${q}`, "_blank", "noopener");
+};
 
 // ---- start ---------------------------------------------------------------
 fetch("recipes/recipes.json").then((r) => r.json()).then((data) => {

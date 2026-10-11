@@ -23,6 +23,14 @@ optional `group` (sub-heading), `note`, `pantry` (goes under "Check you have"), 
 - Set `time_is_estimate` to `false` once you have cooked it and timed it; the `~` in the app disappears.
 - Set `method_inferred` to `true` if the steps are not from the source; the app flags it.
 
+## Recipe requests
+
+The Request tab is a form that opens the repo's GitHub issue form (`.github/ISSUE_TEMPLATE/recipe-request.yml`)
+with the answers filled in. The sender adds a picture there and presses Submit. Requests arrive as GitHub issues
+labelled `recipe request`, are public, and need a GitHub account. The form fields match the recipe fields above,
+so a request can be turned into a JSON entry directly. If you change a field in the template, change its `id`
+in the form code (`index.html`, "recipe request") too.
+
 ## Photos
 
 Photos live in `images/`, about 900px on the long side, saved as JPEG so a recipe page loads fast on a phone.
