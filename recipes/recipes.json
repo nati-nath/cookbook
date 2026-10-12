@@ -364,5 +364,654 @@
       "Finish with lemon juice and sliced spring onion."
     ],
     "method_inferred": true
+  },
+  {
+    "id": "quiche-salmon-leeks",
+    "name": "Smoked salmon and leek quiche",
+    "subtitle": "Quiche au saumon fumé et aux poireaux",
+    "tags": [
+      "french",
+      "oven",
+      "fish"
+    ],
+    "prep_minutes": 15,
+    "cook_minutes": 40,
+    "time_is_estimate": true,
+    "source": "Saved by Nathalie",
+    "ingredients": [
+      {
+        "name": "leeks",
+        "qty": 2,
+        "unit": "",
+        "note": "white and light green parts only",
+        "aisle": "produce"
+      },
+      {
+        "name": "butter",
+        "qty": null,
+        "unit": "",
+        "note": "for the leeks",
+        "aisle": "dairy & eggs",
+        "pantry": true
+      },
+      {
+        "name": "shortcrust pastry",
+        "qty": 1,
+        "unit": "",
+        "note": "ready-rolled",
+        "aisle": "dairy & eggs"
+      },
+      {
+        "name": "smoked salmon",
+        "qty": 4,
+        "unit": "slices",
+        "aisle": "fish"
+      },
+      {
+        "name": "crème fraîche",
+        "qty": 4,
+        "unit": "tbsp",
+        "note": "light; half for the leeks, half for the filling",
+        "aisle": "dairy & eggs"
+      },
+      {
+        "name": "egg",
+        "qty": 2,
+        "unit": "",
+        "aisle": "dairy & eggs"
+      },
+      {
+        "name": "milk",
+        "qty": 6,
+        "unit": "tbsp",
+        "note": "or more for a looser filling",
+        "aisle": "dairy & eggs"
+      },
+      {
+        "name": "gruyère, grated",
+        "qty": 50,
+        "unit": "g",
+        "aisle": "dairy & eggs"
+      },
+      {
+        "name": "nutmeg",
+        "qty": null,
+        "unit": "",
+        "note": "to taste",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "salt",
+        "qty": null,
+        "unit": "",
+        "note": "to taste",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "black pepper",
+        "qty": null,
+        "unit": "",
+        "note": "to taste",
+        "aisle": "pantry",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Heat the oven to 210 C (thermostat 7).",
+      "Slice the leeks, leaving out the green leaves. Soften them in a little butter. Once soft, stir in 2 generous tablespoons of crème fraîche. Season with salt, pepper and nutmeg to taste. Spread this over the pastry base, then cover it completely with smoked salmon (whole slices or strips).",
+      "In a large bowl, mix 2 whole eggs, 2 generous tablespoons of crème fraîche, 6 tablespoons of milk (more if you want a looser filling), the grated gruyère, salt, pepper and, if you like, a little more nutmeg. Pour this over the quiche and bake for about 30 minutes."
+    ]
+  },
+  {
+    "id": "shakshuka",
+    "name": "Shakshuka",
+    "tags": [
+      "vegetarian",
+      "one-pan",
+      "weeknight"
+    ],
+    "prep_minutes": 15,
+    "cook_minutes": 30,
+    "time_is_estimate": true,
+    "source": "Saved by Nathalie",
+    "ingredients": [
+      {
+        "name": "extra virgin olive oil",
+        "qty": 3,
+        "unit": "tbsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "onion",
+        "qty": 1,
+        "unit": "",
+        "note": "large, yellow, chopped",
+        "aisle": "produce"
+      },
+      {
+        "name": "green peppers",
+        "qty": 2,
+        "unit": "",
+        "note": "chopped",
+        "aisle": "produce"
+      },
+      {
+        "name": "garlic",
+        "qty": 2,
+        "unit": "clove",
+        "note": "chopped",
+        "aisle": "produce"
+      },
+      {
+        "name": "ground coriander",
+        "qty": 1,
+        "unit": "tsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "sweet paprika",
+        "qty": 1,
+        "unit": "tsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "ground cumin",
+        "qty": 0.5,
+        "unit": "tsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "red pepper flakes",
+        "qty": 1,
+        "unit": "pinch",
+        "note": "optional",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "salt",
+        "qty": null,
+        "unit": "",
+        "note": "to taste",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "black pepper",
+        "qty": null,
+        "unit": "",
+        "note": "to taste",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "tomatoes",
+        "qty": 6,
+        "unit": "",
+        "note": "medium, chopped (about 6 cups)",
+        "aisle": "produce"
+      },
+      {
+        "name": "tomato sauce",
+        "qty": 120,
+        "unit": "ml",
+        "aisle": "pantry"
+      },
+      {
+        "name": "egg",
+        "qty": 6,
+        "unit": "",
+        "note": "large",
+        "aisle": "dairy & eggs"
+      },
+      {
+        "name": "fresh parsley",
+        "qty": 0.25,
+        "unit": "cup",
+        "note": "chopped leaves",
+        "aisle": "produce"
+      },
+      {
+        "name": "fresh mint",
+        "qty": 0.25,
+        "unit": "cup",
+        "note": "chopped leaves",
+        "aisle": "produce"
+      }
+    ],
+    "steps": [
+      "Sauté the aromatics. Heat the olive oil in a large skillet over medium heat. Once the oil begins to shimmer, add the onion, green peppers, garlic, spices, and a pinch of salt and pepper. Cook, stirring occasionally, until the vegetables have softened, about 5 minutes.",
+      "Finish the sauce. Add the tomatoes and tomato sauce. Cover and simmer for about 15 minutes. Uncover and cook a bit longer to let the mixture reduce and thicken. Taste and adjust the seasoning.",
+      "Add the eggs. With a wooden spoon, make 6 wells in the tomato mixture, spaced well apart. Gently crack an egg into each well.",
+      "Finish the eggs. Reduce the heat to medium-low, cover the skillet, and cook until the egg whites are set.",
+      "Garnish and serve. Uncover and add the parsley and mint. Add more black pepper or red pepper flakes if you like. Serve with warm pitta, challah or crusty bread."
+    ]
+  },
+  {
+    "id": "salmon-avocado-toast",
+    "name": "Salmon avocado toast",
+    "tags": [
+      "quick",
+      "no-cook",
+      "breakfast"
+    ],
+    "prep_minutes": 5,
+    "cook_minutes": 3,
+    "time_is_estimate": true,
+    "source": "Saved by Nathalie",
+    "ingredients": [
+      {
+        "name": "bread",
+        "qty": 2,
+        "unit": "slices",
+        "note": "sourdough or wholemeal",
+        "aisle": "bakery"
+      },
+      {
+        "name": "avocado",
+        "qty": 1,
+        "unit": "",
+        "note": "ripe",
+        "aisle": "produce"
+      },
+      {
+        "name": "smoked salmon",
+        "qty": 4,
+        "unit": "slices",
+        "aisle": "fish"
+      },
+      {
+        "name": "lemon",
+        "qty": 0.5,
+        "unit": "",
+        "aisle": "produce"
+      },
+      {
+        "name": "red pepper flakes",
+        "qty": null,
+        "unit": "",
+        "note": "optional",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "salt",
+        "qty": null,
+        "unit": "",
+        "note": "to taste",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "black pepper",
+        "qty": null,
+        "unit": "",
+        "note": "to taste",
+        "aisle": "pantry",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Toast the bread.",
+      "Mash the avocado with a squeeze of lemon, salt and pepper.",
+      "Spread it on the toast and top with the smoked salmon.",
+      "Finish with more lemon juice, black pepper and a pinch of red pepper flakes."
+    ],
+    "method_inferred": true,
+    "note": "Only the name came with this recipe. The ingredients and method are a typical version, so edit them."
+  },
+  {
+    "id": "rice-paper-rolls",
+    "name": "Rice paper rolls",
+    "tags": [
+      "vietnamese",
+      "no-cook",
+      "fresh"
+    ],
+    "prep_minutes": 30,
+    "cook_minutes": 5,
+    "time_is_estimate": true,
+    "source": "Saved by Nathalie",
+    "ingredients": [
+      {
+        "name": "rice paper sheets",
+        "qty": 7,
+        "qty_max": 14,
+        "unit": "sheets",
+        "note": "22 cm / 8.5 in round",
+        "aisle": "pantry"
+      },
+      {
+        "name": "small cooked prawns",
+        "qty": 11,
+        "unit": "",
+        "note": "unpeeled, about 12 cm / 5 in long, head on",
+        "aisle": "meat"
+      },
+      {
+        "name": "dried vermicelli noodles",
+        "qty": 50,
+        "unit": "g",
+        "aisle": "pantry"
+      },
+      {
+        "name": "soft lettuce leaves",
+        "qty": 7,
+        "unit": "",
+        "note": "oak or butter lettuce",
+        "aisle": "produce"
+      },
+      {
+        "name": "mint leaves",
+        "qty": 14,
+        "unit": "",
+        "aisle": "produce"
+      },
+      {
+        "name": "bean sprouts",
+        "qty": 1,
+        "unit": "cup",
+        "aisle": "produce"
+      },
+      {
+        "group": "Vietnamese peanut dipping sauce",
+        "name": "peanut butter",
+        "qty": 1,
+        "unit": "tbsp",
+        "note": "smooth is best, crunchy is fine",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "Vietnamese peanut dipping sauce",
+        "name": "hoisin sauce",
+        "qty": 2,
+        "unit": "tbsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "Vietnamese peanut dipping sauce",
+        "name": "white vinegar",
+        "qty": 1.5,
+        "unit": "tbsp",
+        "note": "or lime juice",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "Vietnamese peanut dipping sauce",
+        "name": "milk",
+        "qty": 80,
+        "unit": "ml",
+        "note": "any fat %, or water",
+        "aisle": "dairy & eggs"
+      },
+      {
+        "group": "Vietnamese peanut dipping sauce",
+        "name": "garlic",
+        "qty": 1,
+        "unit": "clove",
+        "note": "minced",
+        "aisle": "produce"
+      },
+      {
+        "group": "Vietnamese peanut dipping sauce",
+        "name": "chilli paste",
+        "qty": 0.5,
+        "unit": "tsp",
+        "note": "optional; crushed chilli or sambal oelek, to taste",
+        "aisle": "pantry",
+        "pantry": true
+      }
+    ],
+    "steps": [
+      "Soak the vermicelli in hot water until soft, then drain and rinse.",
+      "Peel the prawns and halve them lengthwise.",
+      "Whisk the sauce ingredients together until smooth.",
+      "Dip a rice paper sheet in warm water for a few seconds until just pliable. Lay it flat.",
+      "Fill with lettuce, noodles, bean sprouts, mint and prawns. Fold in the sides and roll up tightly.",
+      "Serve with the peanut sauce."
+    ],
+    "method_inferred": true
+  },
+  {
+    "id": "butternut-soup",
+    "name": "Butternut squash soup",
+    "tags": [
+      "soup",
+      "vegan",
+      "one-pot"
+    ],
+    "prep_minutes": 15,
+    "cook_minutes": 50,
+    "time_is_estimate": true,
+    "source": "Saved by Nathalie",
+    "ingredients": [
+      {
+        "name": "extra virgin olive oil",
+        "qty": 2,
+        "unit": "tbsp",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "onion",
+        "qty": 1,
+        "unit": "",
+        "note": "large, yellow, chopped",
+        "aisle": "produce"
+      },
+      {
+        "name": "salt",
+        "qty": 0.5,
+        "unit": "tsp",
+        "note": "sea salt",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "name": "butternut squash",
+        "qty": 1,
+        "unit": "",
+        "note": "peeled, seeded and cubed",
+        "aisle": "produce"
+      },
+      {
+        "name": "garlic",
+        "qty": 3,
+        "unit": "clove",
+        "note": "chopped",
+        "aisle": "produce"
+      },
+      {
+        "name": "fresh sage",
+        "qty": 1,
+        "unit": "tbsp",
+        "note": "chopped",
+        "aisle": "produce"
+      },
+      {
+        "name": "fresh rosemary",
+        "qty": 0.5,
+        "unit": "tbsp",
+        "note": "minced",
+        "aisle": "produce"
+      },
+      {
+        "name": "fresh ginger, grated",
+        "qty": 1,
+        "unit": "tsp",
+        "aisle": "produce"
+      },
+      {
+        "name": "vegetable stock",
+        "qty": 500,
+        "unit": "ml",
+        "note": "plus up to 250 ml more if the soup is too thick",
+        "aisle": "pantry"
+      },
+      {
+        "name": "black pepper",
+        "qty": null,
+        "unit": "",
+        "note": "freshly ground",
+        "aisle": "pantry",
+        "pantry": true
+      },
+      {
+        "group": "To serve",
+        "name": "fresh parsley",
+        "qty": null,
+        "unit": "",
+        "note": "to serve",
+        "aisle": "produce"
+      },
+      {
+        "group": "To serve",
+        "name": "pepitas",
+        "qty": null,
+        "unit": "",
+        "note": "to serve",
+        "aisle": "pantry"
+      },
+      {
+        "group": "To serve",
+        "name": "crusty bread",
+        "qty": null,
+        "unit": "",
+        "note": "to serve",
+        "aisle": "bakery"
+      }
+    ],
+    "steps": [
+      "Heat the oil in a large pot over medium heat. Add the onion, salt and several grinds of pepper and sauté until soft, 5 to 8 minutes. Add the squash and cook, stirring occasionally, until it begins to soften, 8 to 10 minutes.",
+      "Add the garlic, sage, rosemary and ginger. Stir and cook for 30 seconds to 1 minute, until fragrant. Add the stock, bring to a boil, cover, and reduce to a simmer. Cook until the squash is tender, 20 to 30 minutes.",
+      "Let it cool slightly. Pour the soup into a blender, in batches if needed, and blend until smooth. If it is too thick, add up to 250 ml more stock and blend again.",
+      "Season to taste. Serve with parsley, pepitas and crusty bread."
+    ]
+  },
+  {
+    "id": "aji-de-gallina",
+    "name": "Ají de gallina",
+    "tags": [
+      "peruvian"
+    ],
+    "placeholder": true,
+    "prep_minutes": 0,
+    "cook_minutes": 0,
+    "time_is_estimate": true,
+    "ingredients": [],
+    "steps": []
+  },
+  {
+    "id": "pollo-a-la-naranja",
+    "name": "Pollo a la naranja",
+    "tags": [
+      "peruvian"
+    ],
+    "placeholder": true,
+    "prep_minutes": 0,
+    "cook_minutes": 0,
+    "time_is_estimate": true,
+    "ingredients": [],
+    "steps": []
+  },
+  {
+    "id": "chaufa-de-quinoa",
+    "name": "Chaufa de quinoa",
+    "tags": [
+      "peruvian"
+    ],
+    "placeholder": true,
+    "prep_minutes": 0,
+    "cook_minutes": 0,
+    "time_is_estimate": true,
+    "ingredients": [],
+    "steps": []
+  },
+  {
+    "id": "arroz-con-mariscos",
+    "name": "Arroz con mariscos",
+    "tags": [
+      "peruvian"
+    ],
+    "placeholder": true,
+    "prep_minutes": 0,
+    "cook_minutes": 0,
+    "time_is_estimate": true,
+    "ingredients": [],
+    "steps": []
+  },
+  {
+    "id": "ceviche",
+    "name": "Ceviche",
+    "tags": [
+      "peruvian"
+    ],
+    "placeholder": true,
+    "prep_minutes": 0,
+    "cook_minutes": 0,
+    "time_is_estimate": true,
+    "ingredients": [],
+    "steps": []
+  },
+  {
+    "id": "pescado-con-salsa-blanca",
+    "name": "Pescado con salsa blanca",
+    "tags": [
+      "peruvian"
+    ],
+    "placeholder": true,
+    "prep_minutes": 0,
+    "cook_minutes": 0,
+    "time_is_estimate": true,
+    "ingredients": [],
+    "steps": []
+  },
+  {
+    "id": "pasta-con-atun",
+    "name": "Pasta con atún",
+    "tags": [
+      "peruvian"
+    ],
+    "placeholder": true,
+    "prep_minutes": 0,
+    "cook_minutes": 0,
+    "time_is_estimate": true,
+    "ingredients": [],
+    "steps": []
+  },
+  {
+    "id": "cau-cau",
+    "name": "Cau cau",
+    "tags": [
+      "peruvian"
+    ],
+    "placeholder": true,
+    "prep_minutes": 0,
+    "cook_minutes": 0,
+    "time_is_estimate": true,
+    "ingredients": [],
+    "steps": []
+  },
+  {
+    "id": "torrejas-de-atun-y-coliflor",
+    "name": "Torrejas de atún y coliflor",
+    "tags": [
+      "peruvian"
+    ],
+    "placeholder": true,
+    "prep_minutes": 0,
+    "cook_minutes": 0,
+    "time_is_estimate": true,
+    "ingredients": [],
+    "steps": []
   }
 ]

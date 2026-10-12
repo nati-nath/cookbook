@@ -139,6 +139,15 @@
   label.item { display: flex; gap: var(--md); align-items: center; padding: 12px 0; border-bottom: 1px solid var(--ink); }
   label.item input { accent-color: var(--accent); width: 1.25rem; height: 1.25rem; flex: none; }
   label.item .q { color: var(--accent); font-weight: 600; white-space: nowrap; }
+  label.item .rm { flex: none; padding: 0 4px; text-decoration: none; font-size: 1rem; }
+  .addform { display: flex; gap: var(--sm); margin-bottom: var(--md); }
+  .addform input {
+    min-width: 0; font-family: var(--sans); font-size: 1rem; color: var(--ink); background: var(--surface);
+    border: 2px solid var(--ink); padding: 10px; box-shadow: 2px 2px 0 var(--ink); -webkit-user-select: text; user-select: text;
+  }
+  .addform #x-name { flex: 3; }
+  .addform #x-qty { flex: 2; }
+  .addform button { flex: none; padding: 10px 14px; background: var(--primary); }
   label.item.done { color: var(--muted); text-decoration: line-through; }
   label.item.done .q { color: var(--muted); }
 
@@ -203,7 +212,7 @@
 <script>
 const KEY = "cookbook.v1";
 let recipes = [];
-let state = { plan: {}, checked: {} };   // plan: {recipeId: times}; checked: {itemKey: true}
+let state = { plan: {}, checked: {}, extras: [] };   // plan: {recipeId: times}; checked: {itemKey: true}; extras: [{id, name, qty}] added by hand
 const ui = { maxTime: 0, tag: "", query: "" };
 
 try { state = Object.assign(state, JSON.parse(localStorage.getItem(KEY)) || {}); } catch (e) {}
@@ -211,7 +220,7 @@ const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } c
 
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const total = (r) => r.prep_minutes + r.cook_minutes;
+const total = (r) => (r.placeholder ? 0 : r.prep_minutes + r.cook_minutes);
 const tilde = (r) => (r.time_is_estimate ? "~" : "");
 
 // ---- amounts -------------------------------------------------------------
@@ -262,13 +271,13 @@ function renderList() {
 
   const q = ui.query.trim().toLowerCase();
   const hits = recipes
-    .filter((r) => !ui.maxTime || total(r) <= ui.maxTime)
+    .filter((r) => !ui.maxTime || (!r.placeholder && total(r) <= ui.maxTime))
     .filter((r) => !ui.tag || r.tags.includes(ui.tag))
     .filter((r) => !q || [r.name, r.subtitle || "", ...r.tags, ...r.ingredients.map((i) => i.name)].join(" ").toLowerCase().includes(q))
-    .sort((a, b) => total(a) - total(b));
+    .sort((a, b) => !!a.placeholder - !!b.placeholder || total(a) - total(b));
   $("#cards").innerHTML = hits.length
     ? hits.map((r) => `<button class="card" data-id="${r.id}">${r.image ? `<img class="ph" src="${esc(r.image)}" alt="${esc(r.image_alt || r.name)}" loading="lazy">` : `<div class="nophoto"></div>`}<div class="t">${esc(r.name)}</div>
-        <div class="m">${tilde(r)}${total(r)} min${state.plan[r.id] ? " · on list" : ""}</div></button>`).join("")
+        <div class="m">${r.placeholder ? "Recipe to come" : `${tilde(r)}${total(r)} min`}${state.plan[r.id] ? " · on list" : ""}</div></button>`).join("")
     : `<div class="empty">No recipe matches.</div>`;
   $("#cards").querySelectorAll(".card").forEach((c) => (c.onclick = () => openDetail(c.dataset.id)));
 }
@@ -290,21 +299,21 @@ function openDetail(id) {
     ${r.subtitle ? `<p class="sub">${esc(r.subtitle)}</p>` : ""}
     ${r.image ? `<div class="hero"><img src="${esc(r.image)}" alt="${esc(r.image_alt || r.name)}"></div>
       ${r.image_credit ? `<p class="credit"><a href="${esc(r.image_credit.url)}" target="_blank" rel="noopener">${esc(r.image_credit.text)}</a></p>` : ""}` : ""}
-    <div class="times">
+    ${r.placeholder ? `<div class="flag">Placeholder. Ingredients and method to come</div>` : `<div class="times">
       <div><b>${tilde(r)}${r.prep_minutes}</b><span>prep min</span></div>
       <div><b>${tilde(r)}${r.cook_minutes}</b><span>cook min</span></div>
       <div><b>${tilde(r)}${total(r)}</b><span>total min</span></div>
     </div>
     <div class="bar"><button id="add" class="${on ? "on" : ""}">${on ? "On grocery list ✓ (tap to remove)" : "+ Add to grocery list"}</button></div>
     <h2>Ingredients</h2><ul class="ing">${ing}</ul>
-    <h2>Method</h2>
-    ${r.method_inferred ? `<div class="flag">Method not in the source. Typical roast, edit me</div>` : ""}
-    <ol class="steps">${r.steps.map((s) => `<li><span>${esc(s)}</span></li>`).join("")}</ol>
+    <h2>Method</h2>`}
+    ${r.method_inferred ? `<div class="flag">Method not in the source. Typical version, edit me</div>` : ""}
+    ${r.placeholder ? "" : `<ol class="steps">${r.steps.map((s) => `<li><span>${esc(s)}</span></li>`).join("")}</ol>`}
     ${r.note ? `<h2>Note</h2><p>${esc(r.note)}</p>` : ""}
     ${r.variations && r.variations.length ? `<h2>Variations</h2><ul class="plain">${r.variations.map((v) => `<li>${esc(v)}</li>`).join("")}</ul>` : ""}
-    <h2>Source</h2><p class="sub">${esc(r.source)}</p>`;
+    ${r.source ? `<h2>Source</h2><p class="sub">${esc(r.source)}</p>` : ""}`;
   $("#back").onclick = closeDetail;
-  $("#add").onclick = () => { if (state.plan[id]) delete state.plan[id]; else state.plan[id] = 1; save(); updateCount(); openDetail(id); };
+  if (!r.placeholder) $("#add").onclick = () => { if (state.plan[id]) delete state.plan[id]; else state.plan[id] = 1; save(); updateCount(); openDetail(id); };
   $("#list-view").hidden = true; $("#detail-view").hidden = false;
   document.querySelector("main").scrollTop = 0;
 }
@@ -344,8 +353,21 @@ function updateCount() {
 function renderGrocery() {
   const el = $("#tab-grocery");
   const ids = Object.keys(state.plan).filter((id) => recipes.some((r) => r.id === id));
-  if (!ids.length) {
-    el.innerHTML = `<div class="empty">Nothing planned yet.<br>Open a recipe and tap “Add to grocery list”.</div>`;
+  const hand = state.extras;
+  const addForm = `<form class="addform" id="addform"><input id="x-name" aria-label="Item" placeholder="Add an item" autocomplete="off" enterkeyhint="done">
+    <input id="x-qty" aria-label="Amount" placeholder="Amount" autocomplete="off" enterkeyhint="done"><button type="submit">Add</button></form>`;
+  const wire = () => {
+    $("#addform").onsubmit = (e) => {
+      e.preventDefault();
+      const name = $("#x-name").value.trim();
+      if (!name) { $("#x-name").focus(); return; }
+      state.extras.push({ id: Date.now().toString(36) + Math.random().toString(36).slice(2, 5), name, qty: $("#x-qty").value.trim() });
+      save(); renderGrocery(); $("#x-name").focus();
+    };
+  };
+  if (!ids.length && !hand.length) {
+    el.innerHTML = `${addForm}<div class="empty">Nothing on the list yet.<br>Add an item above, or open a recipe and tap “Add to grocery list”.</div>`;
+    wire();
     return;
   }
   const items = buildList();
@@ -353,11 +375,15 @@ function renderGrocery() {
   const aisles = [...new Set(buy.map((i) => i.aisle))].sort();
   const row = (i) => `<label class="item ${state.checked[i.key] ? "done" : ""}"><input type="checkbox" data-k="${esc(i.key)}" ${state.checked[i.key] ? "checked" : ""}>
       <span style="flex:1">${esc(i.name)}</span><span class="q">${esc(i.q)}</span></label>`;
+  const handRow = (x) => `<label class="item ${state.checked["extra:" + x.id] ? "done" : ""}"><input type="checkbox" data-k="${esc("extra:" + x.id)}" ${state.checked["extra:" + x.id] ? "checked" : ""}>
+      <span style="flex:1">${esc(x.name)}</span><span class="q">${esc(x.qty)}</span><button type="button" class="quiet rm" data-x="${esc(x.id)}" aria-label="Remove ${esc(x.name)}">✕</button></label>`;
   el.innerHTML = `
-    <h2 style="margin-top:0">Planned</h2><br>
+    ${addForm}
+    ${ids.length ? `<h2 style="margin-top:0">Planned</h2><br>` : ""}
     ${ids.map((id) => { const r = recipes.find((x) => x.id === id); return `<div class="plan"><span class="n">${esc(r.name)}</span>
       <button data-id="${id}" data-d="-1">−</button><span class="c">${state.plan[id]}</span><button data-id="${id}" data-d="1">+</button></div>`; }).join("")}
     ${aisles.map((a) => `<h2>${esc(a)}</h2>${buy.filter((i) => i.aisle === a).map(row).join("")}`).join("")}
+    ${hand.length ? `<h2>Added by hand</h2>${hand.map(handRow).join("")}` : ""}
     ${pantry.length ? `<h2>Check you have</h2>${pantry.map(row).join("")}` : ""}
     <div class="bar"><button id="copy">Copy list</button><button id="untick">Untick all</button><button id="clear" class="danger">Clear all</button></div>`;
 
@@ -370,11 +396,17 @@ function renderGrocery() {
     if (c.checked) state.checked[c.dataset.k] = true; else delete state.checked[c.dataset.k];
     save(); c.closest("label").classList.toggle("done", c.checked);
   }));
+  wire();
+  el.querySelectorAll(".rm").forEach((b) => (b.onclick = () => {
+    state.extras = state.extras.filter((x) => x.id !== b.dataset.x); delete state.checked["extra:" + b.dataset.x];
+    save(); renderGrocery();
+  }));
   $("#untick").onclick = () => { state.checked = {}; save(); renderGrocery(); };
-  $("#clear").onclick = () => { if (confirm("Clear the whole grocery list?")) { state.plan = {}; state.checked = {}; save(); updateCount(); renderGrocery(); } };
+  $("#clear").onclick = () => { if (confirm("Clear the whole grocery list?")) { state.plan = {}; state.checked = {}; state.extras = []; save(); updateCount(); renderGrocery(); } };
   $("#copy").onclick = async () => {
     const line = (i) => `- ${i.name}${i.q ? " — " + i.q : ""}`;
     const text = [...aisles.map((a) => `${a.toUpperCase()}\n${buy.filter((i) => i.aisle === a).map(line).join("\n")}`),
+      hand.length ? `ADDED BY HAND\n${hand.map((x) => line({ name: x.name, q: x.qty })).join("\n")}` : "",
       pantry.length ? `CHECK YOU HAVE\n${pantry.map(line).join("\n")}` : ""].filter(Boolean).join("\n\n");
     try { await navigator.clipboard.writeText(text); $("#copy").textContent = "Copied"; } catch (e) { prompt("Copy the list:", text); }
   };

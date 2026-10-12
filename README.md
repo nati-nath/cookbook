@@ -21,6 +21,7 @@ optional `group` (sub-heading), `note`, `pantry` (goes under "Check you have"), 
 - The grocery list merges lines with the same `name`. Keep names identical across recipes ("soy sauce", "garlic").
 - Teaspoons and tablespoons are added together (3 tsp = 1 tbsp).
 - Set `time_is_estimate` to `false` once you have cooked it and timed it; the `~` in the app disappears.
+- Set `placeholder` to `true` for a dish with only a name: the app shows "Recipe to come", hides the times and the grocery button, and sorts it last. Remove the flag when you fill the recipe in.
 - Set `method_inferred` to `true` if the steps are not from the source; the app flags it.
 
 ## Recipe requests
